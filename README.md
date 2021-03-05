@@ -7,7 +7,7 @@ file: DEINFO_AB_FEIRASLIVRES_2014.csv
 
 ```bash
 Local postgres connection: 
-export DB_CONNECTION=host=postgres port=5432 user=unico-dev password=123456 dbname=pismo sslmode=disable  
+export DB_CONNECTION=host=postgres port=5432 user=unico-dev password=123456 dbname=unico sslmode=disable  
 
 You need a Postgresql running, it can use docker-compose inside deployents folder:  docker-composer up postgres  
 
