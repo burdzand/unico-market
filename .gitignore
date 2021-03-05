@@ -1,0 +1,16 @@
+# executables
+/builds
+
+# IDE files
+.idea
+
+# mac os
+.DS_Store
+
+# database
+/data
+
+# private configurations
+.env
+
+/vendor

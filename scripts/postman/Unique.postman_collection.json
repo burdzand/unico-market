@@ -1,0 +1,209 @@
+{
+	"info": {
+		"_postman_id": "6c5f5db2-00e3-4d68-a1fb-b0d0e0c07961",
+		"name": "Unique",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get District",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/district/6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"district",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get subprefecture",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/subprefecture",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"subprefecture"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Market Remove",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/market/{record}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"market",
+						"{record}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Market Search",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/market",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"market"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Import CSV",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/home/and/Downloads/FEIRAS_LIVRES/CSV/DEINFO_DADOS_AB_FEIRASLIVRES/DEINFO_AB_FEIRASLIVRES_2014.csv"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/import-data",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"import-data"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Market Get Unique",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/market/4041-1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"market",
+						"4041-1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Market Update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"districtID\": 38,\n  \"latitude\": \"345345345\",\n  \"longitude\": \"345345345\",\n  \"name\": \"New Market\",\n  \"neighborhood\": \"Centro\",\n  \"number\": \"s/n\",  \n  \"reference\": \"3243243224\",\n  \"setcents\": 324324324,\n  \"street\": \"street\",\n  \"subPrefectureID\": 6,\n  \"zone8\": \"Leste 2\",\n  \"area\": \"324\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/market/4041-1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"market",
+						"4041-1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Market Create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"districtID\": 38,\n  \"latitude\": \"345345345\",\n  \"longitude\": \"345345345\",\n  \"name\": \"New Market\",\n  \"neighborhood\": \"Centro\",\n  \"number\": \"s/n\",\n  \"record\": \"4041-7\",\n  \"reference\": \"3243243224\",\n  \"setcents\": 324324324,\n  \"street\": \"street\",\n  \"subPrefectureID\": 6,\n  \"zone8\": \"Leste 2\",\n  \"area\": 3550308005253\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/market",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"market"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

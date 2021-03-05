@@ -1,0 +1,35 @@
+version: "3.7"
+
+services:
+  unico:
+    build:
+      context: ../
+      dockerfile: ./build/Dockerfile
+    ports:
+    - "3000:3000"
+    environment:     
+      DB_CONNECTION: "host=postgres port=5432 user=unico-dev password=123456 dbname=unico sslmode=disable"
+    depends_on:
+      - postgres
+    networks:
+      - unico
+
+  postgres:
+    image: postgres:12-alpine
+    volumes:
+      - postgres-volume:/var/lib/postgresql/data
+      - ../scripts/postgres:/docker-entrypoint-initdb.d
+    ports:
+      - "5432:5432"
+    environment:      
+      POSTGRES_MULTIPLE_DATABASES: "unico"
+      POSTGRES_USER: "unico-dev"
+      POSTGRES_PASSWORD: "123456"
+    networks:
+      - unico
+
+volumes:
+  postgres-volume:
+
+networks:
+  unico:

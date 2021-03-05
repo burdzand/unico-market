@@ -1,0 +1,51 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: unico
+  namespace: unico-develop
+spec:
+  ports:
+  - port: 3000
+    name: http
+  selector:
+    app: unico
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: unico
+  namespace: unico-develop
+spec:
+  selector:
+    matchLabels:
+      app: unico
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 50%
+      maxUnavailable: 50%
+  template:
+    metadata:
+      labels:
+        app: unico
+    spec:      
+      imagePullSecrets:
+      - name: unico
+      containers:
+      - name: unico
+        image: unico.io/unico:$tag
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000
+        resources:
+          limits:
+            cpu: 100m
+            memory: 128Mi
+          requests:
+            cpu: 50m
+            memory: 64Mi
+        envFrom:
+        - secretRef:
+            name: common-secrets-file       

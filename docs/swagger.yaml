@@ -1,0 +1,358 @@
+definitions:
+  entities.District:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      subPrefectureID:
+        type: integer
+    type: object
+  entities.Market:
+    properties:
+      Number:
+        type: string
+      Street:
+        type: string
+      area:
+        type: integer
+      createdAt:
+        type: string
+      deletedAt:
+        type: string
+      district:
+        $ref: '#/definitions/entities.District'
+      districtID:
+        type: integer
+      id:
+        type: string
+      latitude:
+        type: string
+      longitude:
+        type: string
+      name:
+        type: string
+      neighborhood:
+        type: string
+      record:
+        type: string
+      reference:
+        type: string
+      setcents:
+        type: integer
+      subPrefecture:
+        $ref: '#/definitions/entities.SubPrefecture'
+      subPrefectureID:
+        type: integer
+      updatedAt:
+        type: string
+      zone8:
+        type: string
+    type: object
+  entities.SubPrefecture:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      zone:
+        type: string
+    type: object
+  models.MarketCreateRequest:
+    properties:
+      area:
+        type: integer
+      districtID:
+        type: integer
+      latitude:
+        type: string
+      longitude:
+        type: string
+      name:
+        type: string
+      neighborhood:
+        type: string
+      number:
+        type: string
+      record:
+        type: string
+      reference:
+        type: string
+      setcents:
+        type: integer
+      street:
+        type: string
+      subPrefectureID:
+        type: integer
+      zone8:
+        type: string
+    required:
+    - area
+    - districtID
+    - latitude
+    - longitude
+    - name
+    - neighborhood
+    - record
+    - reference
+    - setcents
+    - street
+    - subPrefectureID
+    - zone8
+    type: object
+  models.MarketUpdateRequest:
+    properties:
+      area:
+        type: integer
+      districtID:
+        type: integer
+      latitude:
+        type: string
+      longitude:
+        type: string
+      name:
+        type: string
+      neighborhood:
+        type: string
+      number:
+        type: string
+      reference:
+        type: string
+      setcents:
+        type: integer
+      street:
+        type: string
+      subPrefectureID:
+        type: integer
+      zone8:
+        type: string
+    required:
+    - area
+    - districtID
+    - latitude
+    - longitude
+    - name
+    - neighborhood
+    - reference
+    - setcents
+    - street
+    - subPrefectureID
+    - zone8
+    type: object
+  rest.Response:
+    properties:
+      message:
+        type: string
+      status:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /district/{subprefecture}:
+    get:
+      consumes:
+      - application/json
+      description: Get all the existing District by Subprefecture
+      parameters:
+      - description: Subprefecture ID
+        in: path
+        name: subprefecture
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/entities.District'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.Response'
+      summary: List existing District by Subprefecture
+  /import-data:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Import CSV Data
+      parameters:
+      - description: File Path
+        in: formData
+        name: file
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ""
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.Response'
+      summary: Import CSV Data
+  /market:
+    get:
+      consumes:
+      - application/json
+      description: Get all the existing market
+      parameters:
+      - description: name
+        in: query
+        name: name
+        type: string
+      - description: zone
+        in: query
+        name: zone
+        type: string
+      - description: district
+        in: query
+        name: district
+        type: string
+      - description: neighborhood
+        in: query
+        name: neighborhood
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/entities.Market'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.Response'
+      summary: List existing market
+    post:
+      consumes:
+      - application/json
+      description: Create a new Market
+      parameters:
+      - description: Create Market
+        in: body
+        name: market
+        required: true
+        schema:
+          $ref: '#/definitions/models.MarketCreateRequest'
+      produces:
+      - application/json
+      responses:
+        "1":
+          description: ""
+          schema:
+            $ref: '#/definitions/entities.Market'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.Response'
+      summary: Create Market
+  /market/:id:
+    get:
+      consumes:
+      - application/json
+      description: Get all the existing market
+      parameters:
+      - description: Market Record
+        in: path
+        name: record
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/entities.Market'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rest.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/rest.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.Response'
+      summary: Get existing market
+  /market/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Remove Market by ID
+      parameters:
+      - description: Market Record
+        in: path
+        name: record
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ""
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.Response'
+      summary: Remove Market
+    put:
+      consumes:
+      - application/json
+      description: Create a new Market
+      parameters:
+      - description: Market Record
+        in: path
+        name: record
+        required: true
+        type: string
+      - description: Update Market
+        in: body
+        name: market
+        required: true
+        schema:
+          $ref: '#/definitions/models.MarketUpdateRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ""
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.Response'
+      summary: Create Market
+  /subprefecture:
+    get:
+      consumes:
+      - application/json
+      description: Get all the existing Subprefecture
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/entities.SubPrefecture'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/rest.Response'
+      summary: List existing Subprefecture
+swagger: "2.0"
